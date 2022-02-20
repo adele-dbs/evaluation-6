@@ -1,12 +1,12 @@
 <?php
 
-require_once 'controllers/MissionController.php';
+require_once 'controllers/Controller.php';
 require_once 'vendor/autoload.php';
 require_once 'entityManager.php';
 
 $entityManager = getEntityManager ();
 
-$controller = new MissionController();
+$controller = new Controller();
 
 if (isset($_GET['page'])) {
     switch ($_GET['page']) {
@@ -16,6 +16,15 @@ if (isset($_GET['page'])) {
         case 'detail':
             $controller->showMission();
             break;
+        case 'login':
+            $controller->login();
+            break;
+        case 'backend':
+            $controller->backend();
+            break;
+        case 'logout':
+            $controller->logout();
+            break;
         default:
             $controller->home();
             break;
@@ -23,15 +32,6 @@ if (isset($_GET['page'])) {
 } else {
     $controller->home();
 }
-
-    //$controller->home();
-
-//if (!isset($_GET['page'])) {
-
-    //$controller->listMissions();
-//} elseif ($_GET['page'] === 'detail_mission') {
-    //$controller->showMission();
-//}
 
 
 

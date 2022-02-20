@@ -1,5 +1,5 @@
 <?php
-$titre = 'KGB - Accueil';
+$titre = 'Espionnage - Accueil';
 $page_id= 'id="home"';
 ob_start();
 ?>
