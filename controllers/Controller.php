@@ -3,12 +3,14 @@
 require_once 'models/Missions.php';
 require_once 'models/Mission.php';
 require_once 'models/User.php';
+require_once 'models/Status.php';
 
 class Controller
 {
     
   private Missions $missionsObject;
   private Mission $missionObject;
+  private User $userObject;
 
   public function __construct()
   {
@@ -24,7 +26,11 @@ class Controller
 
   public function listMissions()
     {
+      $missionsPerPage = $this->missionsObject->getMissionPerPage ();
+      $pagesNumber = $this->missionsObject->getPagesNumber();
+      $currentPage = $this->missionsObject->getCurrentPage();
       $missions = $this->missionsObject->getMissionsList();
+      
       require_once 'views/list-missions.php';
     }
 
@@ -40,7 +46,6 @@ class Controller
 
    public function login()
    {
-    //mdp : p4$$w0rd
     session_start();
       if(isset($_POST['email']) && isset($_POST['password']))
       {
@@ -49,6 +54,8 @@ class Controller
       }  
     require_once 'views/login.php';
     }
+
+//mdp : p4$$w0rd
 
     public function logout()
    {

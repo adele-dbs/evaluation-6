@@ -1,6 +1,6 @@
 <?php
 $titre = 'Espionnage - Détail de la Mission';
-$page_id = 'id="list-missions"';
+$page_id = 'id="missions"';
 if (is_null($mission)) {
   $content = 'Cette mission n\'existe pas';
 } else {

@@ -1,7 +1,7 @@
 
 <?php
 $titre = 'Espionnage - Missions';
-$page_id = 'id="list-missions"';
+$page_id = 'id="missions"';
 ob_start();
 ?>
          

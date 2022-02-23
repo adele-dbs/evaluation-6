@@ -1,7 +1,7 @@
 
 <?php
 $titre = 'Espionnage - Missions';
-$page_id = 'id="list-missions"';
+$page_id = 'id="missions"';
 ob_start();
 ?>
          
@@ -16,11 +16,11 @@ ob_start();
   <section>
     <nav class="navbar" id="search">
       <form class="form-inline" >
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-light" type="submit">Search</button>
       </form>
+      <p>barre recherche + tri</p>
     </nav>
-    <p>barre recherche + tri</p>
     <article class="container">
       <?php foreach ($missions as $mission): ?>
         <div class="row" id="card">
@@ -28,7 +28,7 @@ ob_start();
             <h2><?= $mission->getName() ?></h2>
           </div>
           <div class="col-2">
-            <span class="badge badge-info"><?= $mission->getStatusID() ?></span>
+            <h2>Statut</h2>
           </div>
           <div class="col-2">
           <a href="?page=detail&id=<?= $mission->getId() ?>" class="btn btn-light btn-outline-dark">Détails</a>
@@ -42,19 +42,19 @@ ob_start();
   <footer >
     <nav aria-label="pagination" id="pagination">
       <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
+      <li class="page-item"><a class="page-link text-black">Page : </a></li>
+      <?php
+          for($i=1; $i<=$pagesNumber; $i++)
+          {
+              if($i!==$currentPage) 
+              {
+                ?>
+                <li class="page-item"><a class="page-link text-black" href="?page=list&action=<?=$i ?>"><?=$i ?></a></li>
+                <?php
+              }    
+          }
+          echo '</p>';
+          ?>
       </ul>
     </nav>
   </footer>

@@ -32,6 +32,11 @@ class Mission
         }
     }
 
+   // public function getStatusName (int $status_id) {
+     //   require_once 'Status.php';
+       // $stmt = $this->pdo->prepare('SELECT status.name FROM status JOIN missions ON status.id = missions.status_id);
+    //}
+
     public function getId()
     {
         return $this->id;
