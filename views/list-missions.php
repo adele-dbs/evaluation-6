@@ -13,32 +13,39 @@ ob_start();
     </div>
   </header>
 
-  <section>
-    <nav class="navbar" id="search">
-      <form class="form-inline" >
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-light" type="submit">Search</button>
-      </form>
-      <p>barre recherche + tri</p>
-    </nav>
-    <article class="container">
-      <?php foreach ($missions as $mission): ?>
-        <div class="row" id="card">
-          <div class="col-8">
-            <h2><?= $mission->getName() ?></h2>
-          </div>
-          <div class="col-2">
-            <h2>Statut</h2>
-          </div>
-          <div class="col-2">
-          <a href="?page=detail&id=<?= $mission->getId() ?>" class="btn btn-light btn-outline-dark">Détails</a>
-          </div>
-        </div>
-      <?php endforeach; ?>
-    </article>
-  </section>
-          
+  <main>
 
+    <nav class="navbar" id="search">
+      <form class="form-inline d-flex" method="GET">
+        <input class="form-control" type="search" name="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-light" type="submit" name="submit_search">Search</button>
+      </form>
+      <form method="POST">
+        <button class="btn btn-light" name="choice" value="ASC">A>Z</button>
+        <button class="btn btn-light" name="choice" value="DESC">Z>A</button>
+      </form>
+    </nav>
+
+    <article class="container">
+      <?php if($missionSearch->rowCount() > 0) { ?>
+
+        <?php foreach ($missions as $mission): ?>
+          <div class="row" id="mission-card">
+            <div class="col-9">
+              <h2><?= $mission->getMissionName() ?></h2>
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+            <a href="?page=detail&id=<?= $mission->getMissionId() ?>" class="btn btn-light btn-outline-dark justify-content-end">Détails</a>
+            </div>
+          </div>
+        <?php endforeach; ?>
+
+      <?php } else { ?>
+        Aucun résultat pour: <?= $search ?>...
+      <?php } ?>
+    </article>
+  </main>
+          
   <footer >
     <nav aria-label="pagination" id="pagination">
       <ul class="pagination">
@@ -49,11 +56,11 @@ ob_start();
               if($i!==$currentPage) 
               {
                 ?>
-                <li class="page-item"><a class="page-link text-black" href="?page=list&action=<?=$i ?>"><?=$i ?></a></li>
+                <li class="page-item"><a class="page-link text-black" href="?page=list&order=<?=$order ?>&action=<?=$i ?>"><?=$i ?></a></li>
                 <?php
               }    
           }
-          echo '</p>';
+          ;
           ?>
       </ul>
     </nav>

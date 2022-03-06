@@ -1,0 +1,55 @@
+    
+
+    <php? while ($search_trouve = $search_missions) {?>
+      <div class="row" id="mission-card">
+        <div class="col-9">
+          <h2><?= $mission->getMissionName() ?></h2>
+        </div>
+        <div class="col-3 d-flex justify-content-end">
+        <a href="?page=detail&id=<?= $mission->getMissionId() ?>" class="btn btn-light btn-outline-dark justify-content-end">Détails</a>
+        </div>
+      </div>
+    <php?   
+    }
+    ?>
+
+    public function getSearchMission (string $search)
+    {
+        if($search !== "")
+        {
+            $stmt = $this->pdo->prepare('SELECT name FROM missions WHERE name LIKE ?');
+            $stmt->execute(array("%".$search."%","%".$search."%"));
+            $search_missions = [];
+            while ($mission = $stmt->fetchObject('Mission')){
+                $search_missions[] = $mission;
+            }
+            return $search_missions;
+        }
+        echo "Mission non trouvée";
+    }
+
+       <?php foreach ($search_missions as $mission): ?>
+        <div class="row" id="mission-card">
+          <div class="col-9">
+            <h2><?= $mission->getMissionName() ?></h2>
+          </div>
+          <div class="col-3 d-flex justify-content-end">
+          <a href="?page=detail&id=<?= $mission->getMissionId() ?>" class="btn btn-light btn-outline-dark justify-content-end">Détails</a>
+          </div>
+        </div>
+    <?php endforeach; ?>
+
+    public function getSearchMission (string $search)
+    {
+        if(isset($_GET['search']) AND !empty($_GET['search']))
+        {
+            $search = htmlspecialchars($_GET['search']);
+            $stmt = $this->pdo->prepare('SELECT name FROM missions WHERE name LIKE "%'.$search.'%"');
+            $search_missions = [];
+            while ($mission = $stmt->fetchObject('Mission')){
+                $search_missions[] = $mission;
+            }
+            return $search_missions;
+        }
+        echo "Mission non trouvée";
+    }

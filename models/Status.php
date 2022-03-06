@@ -1,12 +1,15 @@
 <?php
 
+require_once('models/Model.php');
+
 class Status
 {
-   
+    use Model;
+
     private int $id;
     private string $name;
 
-    public function getStatusDetail (int $id)
+    public function getStatus (int $id)
     {
         $stmt = $this->pdo->prepare('SELECT * FROM status WHERE id = ?');
         $status = null;
@@ -19,12 +22,12 @@ class Status
         }
     }
 
-    public function getId()
+    public function getStatusId()
     {
         return $this->id;
     }
 
-    public function getName()
+    public function getStatusName()
     {
         return $this->name;
     }

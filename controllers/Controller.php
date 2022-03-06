@@ -4,6 +4,20 @@ require_once 'models/Missions.php';
 require_once 'models/Mission.php';
 require_once 'models/User.php';
 require_once 'models/Status.php';
+require_once 'models/Type.php';
+require_once 'models/Particularity.php';
+require_once 'models/Contact.php';
+require_once 'models/Contacts.php';
+require_once 'models/MissionContacts.php';
+require_once 'models/MissionContact.php';
+require_once 'models/Hideout.php';
+require_once 'models/Hideouts.php';
+require_once 'models/MissionHideouts.php';
+require_once 'models/MissionHideout.php';
+require_once 'models/Target.php';
+require_once 'models/Targets.php';
+require_once 'models/Agent.php';
+require_once 'models/Agents.php';
 
 class Controller
 {
@@ -11,12 +25,42 @@ class Controller
   private Missions $missionsObject;
   private Mission $missionObject;
   private User $userObject;
+  private Status $statusObject;
+  private Type $typeObject;
+  private Particularity $particularityObject;
+  private Contact $contactObject;
+  private Contacts $contactsObject;
+  private MissionContacts $missionContactsObject;
+  private MissionContact $missionContactObject;
+  private Hideout $hideoutObject;
+  //private Hideouts $hideoutsObject;
+  private MissionHideouts $missionHideoutsObject;
+  private MissionHideout $missionHideoutObject;
+  private Target $targetObject;
+  private Targets $targetsObject;
+  private Agent $agentObject;
+  private Agents $agentsObject;
 
   public function __construct()
   {
     $this->missionsObject = new Missions();
     $this->missionObject = new Mission();
     $this->userObject = new User();
+    $this->statusObject = new Status();
+    $this->typeObject = new Type();
+    $this->particularityObject = new Particularity();
+    $this->contactObject = new Contact();
+    $this->contactsObject = new Contacts();
+    $this->missionContactObject = new MissionContact();
+    $this->missionContactsObject = new MissionContacts();
+    $this->hideoutObject = new Hideout();
+    //$this->hideoutsObject = new Hideouts();
+    $this->missionHideoutObject = new MissionHideout();
+    $this->missionHideoutsObject = new MissionHideouts();
+    $this->targetObject = new Target();
+    $this->targetsObject = new Targets();
+    $this->agentObject = new Agent();
+    $this->agentsObject = new Agents();
   }
   
   public function home()
@@ -26,11 +70,12 @@ class Controller
 
   public function listMissions()
     {
-      $missionsPerPage = $this->missionsObject->getMissionPerPage ();
+      $order = $this->missionsObject->getOrderChoice();
+      $missionsPerPage = $this->missionsObject->getMissionPerPage();
       $pagesNumber = $this->missionsObject->getPagesNumber();
       $currentPage = $this->missionsObject->getCurrentPage();
       $missions = $this->missionsObject->getMissionsList();
-      
+      $missionSearch = $this->missionsObject->getSearchMissions();
       require_once 'views/list-missions.php';
     }
 
@@ -41,6 +86,14 @@ class Controller
       {
         $mission = $this->missionObject->getMissionsDetail(($_GET['id']));
       }
+      $status = $this->statusObject->getStatus($mission->getStatusId());
+      $type = $this->typeObject->getType($mission->getTypeId());
+      $particularity = $this->particularityObject->getParticularity($mission->getParticularityId());
+      $missionContacts = $this->missionContactsObject->getMissionContactList($mission->getMissionId());
+      $missionHideouts = $this->missionHideoutsObject->getMissionHideoutList($mission->getMissionId());
+      $targets = $this->targetsObject->getMissionTargetList($mission->getMissionId());
+      $agents = $this->agentsObject->getMissionAgentList($mission->getMissionId());
+    
     require_once 'views/detail-mission.php';
    }
 

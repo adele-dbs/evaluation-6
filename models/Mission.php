@@ -2,7 +2,7 @@
 
 require_once('models/Model.php');
 
-class Mission
+class Mission 
 {
     use Model;
 
@@ -32,17 +32,12 @@ class Mission
         }
     }
 
-   // public function getStatusName (int $status_id) {
-     //   require_once 'Status.php';
-       // $stmt = $this->pdo->prepare('SELECT status.name FROM status JOIN missions ON status.id = missions.status_id);
-    //}
-
-    public function getId()
+    public function getMissionId()
     {
         return $this->id;
     }
 
-    public function getName()
+    public function getMissionName()
     {
         return $this->name;
     }
@@ -56,6 +51,7 @@ class Mission
     {
         return $this->description;
     }
+    
     public function getCodeName()
     {
         return $this->code_name;
@@ -81,7 +77,7 @@ class Mission
         return $this->type_id;
     }
     
-    public function getParticularity_id()
+    public function getParticularityId()
     {
         return $this->particularity_id;
     }
