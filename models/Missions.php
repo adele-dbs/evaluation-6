@@ -61,16 +61,26 @@ class Missions
         return $missions;
     }
 
-    public function getSearchMissions()
+    public function getMissionsSearchList (string $searchmission)
     {
-        $missionSearch = $this->pdo->query('SELECT name FROM missions ORDER BY id DESC');
-        if(isset($_GET['search']) AND !empty($_GET['search'])) {
-        $search = htmlspecialchars($_GET['search']);
-        $missionSearch = $this->pdo->query('SELECT name FROM missions WHERE name LIKE "%'.$search.'%" ORDER BY id DESC');
-        if($missionSearch->rowCount() == 0) {
-            $missionSearch = $this->pdo->query('SELECT name FROM missions WHERE CONCAT(name, name_code) LIKE "%'.$search.'%" ORDER BY id DESC');
+        if($searchmission !== "") {
+            $stmt = $this->pdo->query('SELECT * FROM missions WHERE name like "%'.$searchmission.'%"');
+            //$stmt->bindParam(':searchmission', '%.$searchmission.%');
+            $missionsFound = [];
+            while ($mission = $stmt->fetchObject('Mission')) {
+                $missionsFound[] = $mission;
             }
+            return $missionsFound;
         }
-        return $missionSearch;
-    }	
+    }
+
+    public function getMissionsTable ()
+    {
+        $stmt = $this->pdo->query('SELECT * FROM missions');
+        $missions = [];
+        while ($mission = $stmt->fetchObject('Mission')) {
+            $missions[] = $mission;
+        }
+        return $missions;
+    }
 }

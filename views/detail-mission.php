@@ -9,10 +9,10 @@ if (is_null($mission)) {
 
   <h1 class="text-center"><?= $mission->getMissionName() ?></h1>
 
-  <article class="container" id="mission-detail">
+  <article class="container items" id="mission-detail">
 
-  <div class="row row-cols-1 row-cols-sm-2 d-flex justify-content-center">
-    <div class="card mission-items">
+  <div class="row row-cols-1 row-cols-sm-2">
+    <div class="card">
         <div class="card-body">
           <p class="card-text">
             Nom de code : <?= $mission->getCodeName() ?>
@@ -21,15 +21,15 @@ if (is_null($mission)) {
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-6 card mission-items">
+    <div class="row row-cols-2">
+      <div class="card">
         <div class="card-body">
           <p class="card-text">
             Date de début : <?= $mission->getStartDate() ?>
           </p>
         </div>
       </div>
-      <div class="col-6 card mission-items">
+      <div class="card">
         <div class="card-body">
           <p class="card-text">
             Date de fin : <?= $mission->getEndDate() ?>
@@ -38,29 +38,29 @@ if (is_null($mission)) {
       </div>
     </div>
 
-  <div class="row row-cols-1 row-cols-sm-2">
-      <div class="card mission-items">
+  <div class="row row-cols-2">
+      <div class="card">
         <div class="card-body">
           <p class="card-text">
             Pays : <?= $mission->getCountry() ?>
           </p>
         </div>
       </div>
-      <div class="card mission-items">
+      <div class="card">
         <div class="card-body">
           <p class="card-text">
             Statut : <?= $status->getStatusName() ?>
           </p>
         </div>
       </div>
-      <div class="card mission-items">
+      <div class="card">
         <div class="card-body">
           <p class="card-text">
             Type :  <?= $type->getTypeName() ?>
           </p>
         </div>
       </div>
-      <div class="card mission-items">
+      <div class="card">
         <div class="card-body">
           <p class="card-text">
             Spécificité requise :  <?= $particularity->getParticularityName() ?>
@@ -70,7 +70,7 @@ if (is_null($mission)) {
     </div>
 
     <div class="row">
-      <div class="card mission-items" style="width: 60rem;">
+      <div class="card">
         <div class="card-body">
           <p class="card-text">
             Description : <?= $mission->getDescription() ?>
@@ -80,7 +80,7 @@ if (is_null($mission)) {
     </div>
 
     <div class="row row-cols-1 row-cols-sm-2">
-      <div class="card mission-items">
+      <div class="card">
         <div class="card-body">
           <p class="card-text">
             Contact : 
@@ -92,7 +92,7 @@ if (is_null($mission)) {
           </p>
         </div>
       </div>
-      <div class="card mission-items">
+      <div class="card">
         <div class="card-body">
           <p class="card-text">
             Planque : 
@@ -104,19 +104,19 @@ if (is_null($mission)) {
           </p>
         </div>
       </div>
-      <div class="card mission-items">
+      <div class="card">
         <div class="card-body">
           <p class="card-text">
             Cible : 
             <ul>
               <?php foreach ($targets as $target): ?>
-                <li><?= $target->getFirstname() ?> <?= $target->getLastname() ?></li>
+                <li><?= $target->getCodeName() ?></li>
               <?php endforeach; ?>
             </ul>
           </p>
         </div>
       </div>
-      <div class="card mission-items">
+      <div class="card">
         <div class="card-body">
           <p class="card-text">
             Agent : 
@@ -130,6 +130,13 @@ if (is_null($mission)) {
       </div>
     </div>
   </article>
+  
+  <div class="text-center">
+    <a class="btn btn-dark text-white text-center" href="?page=list" role="button" id="button-mission-list"> 
+      Liste des Missions
+    </a>
+  </div>
+
   <?php
   $content = ob_get_clean();
 }

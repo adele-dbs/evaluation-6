@@ -8,6 +8,7 @@ class Target
     private int $id;
     private string $firstname;
     private string $lastname;
+    private string $code_name;
     private $birthday;
     private string $nationality;
     private int $mission_id;
@@ -29,6 +30,12 @@ class Target
     {
         return $this->id;
     }
+
+    public function getCodeName()
+    {
+        return $this->code_name;
+    }
+
 
     public function getFirstname()
     {

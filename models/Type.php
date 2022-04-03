@@ -22,6 +22,19 @@ class Type
         }
     }
 
+    public function addType (string $pname)
+    {
+        if($pname !== "") {
+            $stmt = $this->pdo->prepare('INSERT INTO types (name) VALUES (:pname)');
+            $stmt->bindParam(':pname', $pname);
+            if ($stmt->execute()) {
+                echo 'Le types a bien été créée';
+            } else {
+                echo 'Impossible de créer le type';
+            }
+        }
+    }
+
     public function getTypeId()
     {
         return $this->id;

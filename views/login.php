@@ -15,17 +15,19 @@ ob_start();
 
 <main>
   
-  <form id="login-form" action="" method="POST">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email : </label>
-      <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Mot de passe : </label>
-      <input type="password" name="password" class="form-control" id="password">
-    </div>
-    <button type="submit" class="btn btn-light btn-outline-dark">Se connecter</button>
-  </form>
+  <div class="container d-flex justify-content-center" id="login-f">
+    <form action="" method="POST" id="login-form">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email : </label>
+        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Mot de passe : </label>
+        <input type="password" name="password" class="form-control" id="password">
+      </div>
+      <button type="submit" class="btn btn-light btn-outline-dark">Se connecter</button>
+    </form>
+  </div>
 
 </main>
           

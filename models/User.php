@@ -17,21 +17,27 @@ class User
 
     public function getLogin (string $email, string $password)
     {
-        if($email !== "" && $password !== "")
-        {
-          $stmt = $this->pdo->prepare('SELECT * FROM users WHERE email = :email');
-          $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
-          $stmt->bindValue(':email', $email);
-          if ($stmt->execute()) {
-              $user = $stmt->fetch();
-              if ($user !== false && password_verify($password, $user->getPassword())) {
-                $_SESSION["autoriser"]="oui";
-                header('Location: ?page=backend');
-              }
-          }
-          require_once 'views/login.php';
-          echo "Identifiant ou Mot de passe invalide";
+        if($email !== "" && $password !== "") {
+            $stmt = $this->pdo->prepare('SELECT * FROM users WHERE email = :email');
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
+            $stmt->bindValue(':email', $email);
+            if ($stmt->execute()) {
+                $user = $stmt->fetch();
+                if ($user !== false && password_verify($password, $user->getPassword())) {
+                    if ($user->getRightId() === 1 ) {
+                        $_SESSION["autoriser"]="oui";
+                        header('Location: ?page=backend');
+                    } else {
+                        require_once 'views/login.php';
+                        $message = "Vous n'êtes pas administrateur";
+                    }     
+                } else {
+                    require_once 'views/login.php';
+                    $message = "Identifiant ou Mot de passe invalide";
+                }
+            }  
         } 
+        echo $message;
     }
 
     public function getId()
