@@ -1,4 +1,7 @@
     
 
+    cd C:\xampp\mysql\bin
+    mysqldump -u root -p kgb > bdd_kgb.sql
+    
     git push -u origin
 

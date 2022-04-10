@@ -44,7 +44,6 @@ class Particularity
         } else {
             echo 'Impossible de supprimer la particularité';
         }
-
     }
 
     public function updateParticularity (int $updateid, string $updatename)
@@ -57,7 +56,6 @@ class Particularity
         } else {
             echo 'Impossible de modifier la particularité';
         }
-
     }
 
     public function getParticularityId()

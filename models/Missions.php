@@ -65,7 +65,6 @@ class Missions
     {
         if($searchmission !== "") {
             $stmt = $this->pdo->query('SELECT * FROM missions WHERE name like "%'.$searchmission.'%"');
-            //$stmt->bindParam(':searchmission', '%.$searchmission.%');
             $missionsFound = [];
             while ($mission = $stmt->fetchObject('Mission')) {
                 $missionsFound[] = $mission;

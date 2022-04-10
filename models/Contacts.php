@@ -17,4 +17,14 @@ class Contacts
         return $contacts;
     }
 
+    public function getContactsTable ()
+    {
+        $stmt = $this->pdo->query('SELECT * FROM contacts');
+        $contacts = [];
+        while ($contact = $stmt->fetchObject('Contact')) {
+            $contacts[] = $contact;
+        }
+        return $contacts;
+    }
+
 }

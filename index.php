@@ -35,13 +35,13 @@ if (isset($_GET['page'])) {
             $controller->backendParticularities();
             break;
         case 'backend-agents':
-            $controller->backend();
+            $controller->backendAgents();
             break;
         case 'backend-contacts':
-            $controller->backend();
+            $controller->backendContacts();
             break;
         case 'backend-hideouts':
-            $controller->backend();
+            $controller->backendHideouts();
             break;
         case 'logout':
             $controller->logout();

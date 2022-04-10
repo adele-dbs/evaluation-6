@@ -22,16 +22,16 @@ ob_start();
             <a class="nav-link" href="?page=backend-misions">Missions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Agents</a>
+            <a class="nav-link" href="?page=backend-agents">Agents</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cibles</a>
+            <a class="nav-link" href="?page=backend-targets">Cibles</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contacts</a>
+            <a class="nav-link" href="?page=backend-contacts">Contacts</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Planques</a>
+            <a class="nav-link" href="?page=backend-hideouts">Planques</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="?page=backend-particularities">Particularités</a>

@@ -5,7 +5,7 @@ require_once 'models/Mission.php';
 require_once 'models/User.php';
 require_once 'models/Status.php';
 require_once 'models/Type.php';
-//require_once 'models/Types.php';
+require_once 'models/Types.php';
 require_once 'models/Particularity.php';
 require_once 'models/Particularities.php';
 require_once 'models/Contact.php';
@@ -13,7 +13,7 @@ require_once 'models/Contacts.php';
 require_once 'models/MissionContacts.php';
 require_once 'models/MissionContact.php';
 require_once 'models/Hideout.php';
-//require_once 'models/Hideouts.php';
+require_once 'models/Hideouts.php';
 require_once 'models/MissionHideouts.php';
 require_once 'models/MissionHideout.php';
 require_once 'models/Target.php';
@@ -29,7 +29,7 @@ class Controller
   private User $userObject;
   private Status $statusObject;
   private Type $typeObject;
-  //private Types $typesObject;
+  private Types $typesObject;
   private Particularity $particularityObject;
   private Particularities $particularitiesObject;
   private Contact $contactObject;
@@ -37,7 +37,7 @@ class Controller
   private MissionContacts $missionContactsObject;
   private MissionContact $missionContactObject;
   private Hideout $hideoutObject;
-  //private Hideouts $hideoutsObject;
+  private Hideouts $hideoutsObject;
   private MissionHideouts $missionHideoutsObject;
   private MissionHideout $missionHideoutObject;
   private Target $targetObject;
@@ -52,7 +52,7 @@ class Controller
     $this->userObject = new User();
     $this->statusObject = new Status();
     $this->typeObject = new Type();
-    //$this->typesObject = new Types();
+    $this->typesObject = new Types();
     $this->particularityObject = new Particularity();
     $this->particularitiesObject = new Particularities();
     $this->contactObject = new Contact();
@@ -83,7 +83,6 @@ class Controller
       $missionsPerPage = $this->missionsObject->getMissionPerPage();
       $pagesNumber = $this->missionsObject->getPagesNumber();
       $currentPage = $this->missionsObject->getCurrentPage();
-      //$missionsSearch = $this->missionsObject->getSearchMissions();
       $missions = $this->missionsObject->getMissionsList();
       require_once 'views/list-missions.php';
     }
@@ -175,9 +174,138 @@ class Controller
      if($_SESSION["autoriser"]!="oui"){
         header("location:?page=login");
      }
-     if(isset($_POST['pname'])){
-       $this->typeObject->addType(($_POST['pname']));
+     if(isset($_POST['addname'])){
+      $this->typeObject->addType(($_POST['addname']));
+    }
+    if(isset($_POST['delete'])){
+        $this->typeObject->deleteType($_POST['delete']);
+    }
+    if(isset($_POST['updateid']) && isset($_POST['updatename'])){
+      $this->typeObject->updateType($_POST['updateid'], $_POST['updatename']);
+    }
+    $types = $this->typesObject->getTypesTable();
+    require_once 'views/backend-types.php';
+    }
+
+    public function backendContacts()
+    {  
+     session_start();
+     if($_SESSION["autoriser"]!="oui"){
+        header("location:?page=login");
      }
-     require_once 'views/backend-types.php';
+     if(isset($_POST['addfirstname']) 
+      && isset($_POST['addlastname']) 
+      && isset($_POST['addbirthday']) 
+      && isset($_POST['addcodename']) 
+      && isset($_POST['addnationality'])){
+      $this->contactObject->addContact(
+        ($_POST['addfirstname']), 
+        ($_POST['addlastname']), 
+        ($_POST['addbirthday']), 
+        ($_POST['addcodename']), 
+        ($_POST['addnationality']));
+    }
+    if(isset($_POST['delete'])){
+        $this->contactObject->deleteContact($_POST['delete']);
+    }
+    if(isset($_POST['updatefirstname']) 
+      && isset($_POST['updatelastname']) 
+      && isset($_POST['updatebirthday']) 
+      && isset($_POST['updatecodename']) 
+      && isset($_POST['updatenationality'])){
+      $this->contactObject->updateContact(
+        $_POST['updateid'], 
+        $_POST['updatefirstname'], 
+        $_POST['updatelastname'], 
+        $_POST['updatebirthday'], 
+        $_POST['updatecodename'],
+        $_POST['updatenationality']);
+      //$contact = $this->contactObject->getContactDetail($_POST['updateid']);
+      }
+    
+    $contacts = $this->contactsObject->getContactsTable();
+    require_once 'views/backend-contacts.php';
+    }
+
+    public function backendAgents()
+    {  
+     session_start();
+     if($_SESSION["autoriser"]!="oui"){
+        header("location:?page=login");
      }
+     if(isset($_POST['addfirstname']) 
+      && isset($_POST['addlastname']) 
+      && isset($_POST['addbirthday']) 
+      && isset($_POST['addcodename']) 
+      && isset($_POST['addnationality'])){
+      $this->agentObject->addAgent(
+        ($_POST['addfirstname']), 
+        ($_POST['addlastname']), 
+        ($_POST['addbirthday']), 
+        ($_POST['addcodename']), 
+        ($_POST['addnationality']));
+    }
+    if(isset($_POST['delete'])){
+        $this->agentObject->deleteAgent($_POST['delete']);
+    }
+    if(isset($_POST['updatefirstname']) 
+      && isset($_POST['updatelastname']) 
+      && isset($_POST['updatebirthday']) 
+      && isset($_POST['updatecodename']) 
+      && isset($_POST['updatenationality'])){
+      $this->agentObject->updateAgent(
+        $_POST['updateid'], 
+        $_POST['updatefirstname'], 
+        $_POST['updatelastname'], 
+        $_POST['updatebirthday'], 
+        $_POST['updatecodename'],
+        $_POST['updatenationality']);
+      //$contact = $this->contactObject->getContactDetail($_POST['updateid']);
+      }
+    
+    $agents = $this->agentsObject->getAgentsTable();
+    require_once 'views/backend-agents.php';
+    }
+
+    public function backendHideouts()
+    {  
+     session_start();
+     if($_SESSION["autoriser"]!="oui"){
+        header("location:?page=login");
+     }
+     if(isset($_POST['addfirstname']) 
+      && isset($_POST['addlastname']) 
+      && isset($_POST['addbirthday']) 
+      && isset($_POST['addcodename']) 
+      && isset($_POST['addnationality'])){
+      $this->hideoutObject->addHideout(
+        ($_POST['addfirstname']), 
+        ($_POST['addlastname']), 
+        ($_POST['addbirthday']), 
+        ($_POST['addcodename']), 
+        ($_POST['addnationality']));
+    }
+    if(isset($_POST['delete'])){
+        $this->hideoutObject->deleteHideout($_POST['delete']);
+    }
+    if(isset($_POST['updatefirstname']) 
+      && isset($_POST['updatelastname']) 
+      && isset($_POST['updatebirthday']) 
+      && isset($_POST['updatecodename']) 
+      && isset($_POST['updatenationality'])){
+      $this->hideoutObject->updateHideout(
+        $_POST['updateid'], 
+        $_POST['updatefirstname'], 
+        $_POST['updatelastname'], 
+        $_POST['updatebirthday'], 
+        $_POST['updatecodename'],
+        $_POST['updatenationality']);
+      //$contact = $this->contactObject->getContactDetail($_POST['updateid']);
+      }
+    
+    $agents = $this->hideoutsObject->getHideoutsTable();
+    require_once 'views/backend-agents.php';
+    }
+
+    
 }
