@@ -15,7 +15,6 @@ class MissionHideouts
             $missionHideouts = [];
             while ($hideout = $stmt->fetchObject('Hideout')) {
                 $missionHideouts[] = $hideout;
-
                 if(!is_object($hideout)) {
                     $hideout = null;
                 }

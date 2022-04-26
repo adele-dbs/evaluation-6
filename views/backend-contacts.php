@@ -15,17 +15,17 @@ ob_start();
               <label for="updateid">Id : </label>
               <input type="text" name="updateid" readonly class="form-control" id="updateid" value="<?=($_POST['update'])?>">
               <label for="updatefirstname">Prénom : </label>
-              <input type="text" name="updatefirstname" class="form-control" id="updatefirstname" placeholder="<?= $contact->getFirstName() ?>"> 
-               <label for="updatelastname">Nom : </label>
-              <input type="text" name="updatelastname" class="form-control" id="updatelastname">
-               <label for="updatebirthday">Date de naissance : </label>
-              <input type="date" name="updatebirthday" class="form-control" id="updatebirthday">
-               <label for="addcodename">Nom de code : </label>
-              <input type="text" name="addcodename" class="form-control" id="addcodename">
-              <label for="addnationality">Nationnalité : </label>
-              <input type="text" name="addnationality" class="form-control" id="addnationality">
+              <input type="text" name="updatefirstname" class="form-control" id="updatefirstname" value="<?=$contact->getFirstName()?>"> 
+              <label for="updatelastname">Nom : </label>
+              <input type="text" name="updatelastname" class="form-control" id="updatelastname" value="<?=$contact->getLastName()?>">
+              <label for="updatebirthday">Date de naissance : </label>
+              <input type="date" name="updatebirthday" class="form-control" id="updatebirthday" value="<?=$contact->getBirthday()?>">
+              <label for="updatecodename">Nom de code : </label>
+              <input type="text" name="updatecodename" class="form-control" id="updatecodename" value="<?=$contact->getCodeName()?>">
+              <label for="updatenationality">Nationnalité : </label>
+              <input type="text" name="updatenationality" class="form-control" id="updatenationality" value="<?=$contact->getNationality()?>">
             </div>
-            <button type="submit" class="btn btn-light btn-outline-dark">Modifier</button>
+            <button type="submit" name="form-update" class="btn btn-light btn-outline-dark">Modifier</button>
           </form>
           <?php
         } else {

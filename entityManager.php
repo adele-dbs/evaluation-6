@@ -1,10 +1,6 @@
 <?php
-require_once 'database/vendor/autoload.php';
 
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\Setup;
-
-function getEntityManager () : EntityManager
+function getEntityManager ()
 {
       $dbParams = [
         'driver' => 'pdo_mysql',
@@ -12,8 +8,4 @@ function getEntityManager () : EntityManager
         'password' => '',
         'dbname' => 'kgb',
     ];
-
-    $config = Setup::createAnnotationMetadataConfiguration(['entities'], true, null, null, false);
-
-    return EntityManager::create($dbParams, $config);
 }

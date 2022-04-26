@@ -38,7 +38,7 @@ class Contact
             $stmt->bindParam(':addcodename', $addcodename);
             $stmt->bindParam(':addnationality', $addnationality);
             if ($stmt->execute()) {
-                echo 'Le contact a bien été créée';
+                echo 'Le contact a bien été créé';
             } else {
                 echo 'Impossible de créer le contact';
             }
@@ -50,7 +50,7 @@ class Contact
         $stmt = $this->pdo->prepare('DELETE FROM contacts WHERE id = :id');
         $stmt->bindParam(':id', $id);
         if ($stmt->execute()) {
-            echo 'Le contact a bien été supprimée';
+            echo 'Le contact a bien été supprimé';
         } else {
             echo 'Impossible de supprimer le contact';
         }
@@ -60,11 +60,11 @@ class Contact
     public function updateContact (int $updateid, string $updatefirstname, string $updatelastname, $updatebirthday, string $updatecodename, string $updatenationality)
     {
         $stmt = $this->pdo->prepare('UPDATE contacts SET 
-        fisrtname = :updatefisrtname, 
+        firstname = :updatefirstname, 
         lastname = :updatelastname, 
         birthday = :updatebirthday, 
         code_name = :updatecodename, 
-        nationality = :updatenationality, 
+        nationality = :updatenationality 
         WHERE id = :updateid');
         $stmt->bindParam(':updateid', $updateid);
         $stmt->bindParam(':updatefirstname', $updatefirstname);
@@ -73,7 +73,7 @@ class Contact
         $stmt->bindParam(':updatecodename', $updatecodename);
         $stmt->bindParam(':updatenationality', $updatenationality);
         if ($stmt->execute()) {
-            echo 'Le contact a bien été modifiée';
+            echo 'Le contact a bien été modifié';
         } else {
             echo 'Impossible de modifier le contact';
         }

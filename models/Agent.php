@@ -1,10 +1,11 @@
 <?php
 
-require_once 'Mission.php';
+require_once('models/Model.php');
 
 class Agent
 {
-    
+    use Model;
+
     private int $id;
     private string $firstname;
     private string $lastname;
@@ -27,18 +28,32 @@ class Agent
         }
     }
 
-    public function addAgent (string $addfirstname, string $addlastname, $addbirthday, string $addcodename, string $addnationality)
+    public function getAgentDetailById (int $id)
     {
-        if($addfirstname !== "" && $addlastname !== "" && $addbirthday !== "" && $addcodename !== "" && $addnationality !== "") {
-            $stmt = $this->pdo->prepare('INSERT INTO agents (firstname, lastname, birthday, code_name, nationality) 
-                VALUES (:addfirstname, :addlastname, :addbirthday, :addcodename, :addnationality)');
+        $stmt = $this->pdo->prepare('SELECT * FROM agents WHERE id = ?');
+        $agentById = null;
+        if ($stmt->execute([$id])) {
+          $agentById = $stmt->fetchObject('Agent');
+          if(!is_object($agentById)) {
+              $agentById = null;
+          }
+        return $agentById;
+        }
+    }
+
+    public function addAgent (string $addfirstname, string $addlastname, $addbirthday, string $addcodename, string $addnationality, int $addmissionid)
+    {
+        if($addfirstname !== "" && $addlastname !== "" && $addbirthday !== "" && $addcodename !== "" && $addnationality !== "" && $addmissionid !== "") {
+            $stmt = $this->pdo->prepare('INSERT INTO agents (firstname, lastname, birthday, identification_code, nationality, mission_id) 
+                VALUES (:addfirstname, :addlastname, :addbirthday, :addcodename, :addnationality, :addmissionid)');
             $stmt->bindParam(':addfirstname', $addfirstname);
             $stmt->bindParam(':addlastname', $addlastname);
             $stmt->bindParam(':addbirthday', $addbirthday);
             $stmt->bindParam(':addcodename', $addcodename);
             $stmt->bindParam(':addnationality', $addnationality);
+            $stmt->bindParam(':addmissionid', $addmissionid);
             if ($stmt->execute()) {
-                echo 'L\'agent a bien été créée';
+                echo 'L\'agent a bien été créé';
             } else {
                 echo 'Impossible de créer l\'agent';
             }
@@ -50,21 +65,22 @@ class Agent
         $stmt = $this->pdo->prepare('DELETE FROM agents WHERE id = :id');
         $stmt->bindParam(':id', $id);
         if ($stmt->execute()) {
-            echo 'Le contact a bien été supprimée';
+            echo 'L\'agent a bien été supprimé';
         } else {
-            echo 'Impossible de supprimer le contact';
+            echo 'Impossible de supprimer l\'agent';
         }
 
     }
 
-    public function updateAgent (int $updateid, string $updatefirstname, string $updatelastname, $updatebirthday, string $updatecodename, string $updatenationality)
+    public function updateAgent (int $updateid, string $updatefirstname, string $updatelastname, $updatebirthday, string $updatecodename, string $updatenationality, int $updatemissionid)
     {
         $stmt = $this->pdo->prepare('UPDATE agents SET 
-        fisrtname = :updatefisrtname, 
+        firstname = :updatefirstname, 
         lastname = :updatelastname, 
         birthday = :updatebirthday, 
-        code_name = :updatecodename, 
+        identification_code = :updatecodename, 
         nationality = :updatenationality, 
+        mission_id = :updatemissionid
         WHERE id = :updateid');
         $stmt->bindParam(':updateid', $updateid);
         $stmt->bindParam(':updatefirstname', $updatefirstname);
@@ -72,8 +88,9 @@ class Agent
         $stmt->bindParam(':updatebirthday', $updatebirthday);
         $stmt->bindParam(':updatecodename', $updatecodename);
         $stmt->bindParam(':updatenationality', $updatenationality);
+        $stmt->bindParam(':updatemissionid', $updatemissionid);
         if ($stmt->execute()) {
-            echo 'L\'agent a bien été modifiée';
+            echo 'L\'agent a bien été modifié';
         } else {
             echo 'Impossible de modifier l\'agent';
         }

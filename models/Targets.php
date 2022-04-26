@@ -2,7 +2,6 @@
 
 require_once('models/Model.php');
 
-
 class Targets
 {
     use Model;
@@ -22,5 +21,25 @@ class Targets
             }
         return $targets;
         }
+    }
+
+    public function getTargetsTable ()
+    { 
+        $stmt = $this->pdo->query('SELECT * FROM targets');
+        $targets = [];
+        while ($target = $stmt->fetchObject('Target')) {
+            $targets[] = $target;
+        }
+        return $targets;
+    }
+
+    public function getTargetsMissionTable ()
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM targets LEFT JOIN missions ON targets.mission_id = missions.id');
+        $targetsmissions = [];
+        while ($target = $stmt->fetchObject('PDO::FETCH_ASSOC')) {
+            $targetsmissions[] = $target;
+        }
+        return $targetsmissions;
     }
 }

@@ -2,7 +2,6 @@
 
 require_once('models/Model.php');
 
-
 class Agents
 {
     use Model;
@@ -22,5 +21,15 @@ class Agents
             }
         return $agents;
         }
+    }
+
+    public function getAgentsTable ()
+    {
+        $stmt = $this->pdo->query('SELECT * FROM agents');
+        $agents = [];
+        while ($agent = $stmt->fetchObject('Agent')) {
+            $agents[] = $agent;
+        }
+        return $agents;
     }
 }

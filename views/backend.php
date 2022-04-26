@@ -19,7 +19,7 @@ ob_start();
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="?page=backend-misions">Missions</a>
+            <a class="nav-link" href="?page=backend">Missions</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="?page=backend-agents">Agents</a>

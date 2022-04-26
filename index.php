@@ -1,7 +1,7 @@
 <?php
 
 require_once 'controllers/Controller.php';
-require_once 'database/vendor/autoload.php';
+//require_once 'database/vendor/autoload.php';
 require_once 'entityManager.php';
 
 $entityManager = getEntityManager ();
@@ -20,13 +20,10 @@ if (isset($_GET['page'])) {
             $controller->login();
             break;
         case 'backend':
-            $controller->backend();
-            break;
-        case 'backend-missions':
             $controller->backendMissions();
             break;
         case 'backend-targets':
-            $controller->backend();
+            $controller->backendTargets();
             break;
         case 'backend-types':
             $controller->backendTypes();

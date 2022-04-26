@@ -1,9 +1,10 @@
 <?php
 
-use Doctrine\ORM\Mapping as ORM;
-
 class Hideout
 {
+
+    use Model;
+
     private int $id;
     private string $code_name;
     private string $adress;
@@ -25,38 +26,28 @@ class Hideout
         }
     }
 
-  public function addHideout (
-    string $addcodename, 
-    string $addadress,
-    int $addpostcode, 
-    string $addcity, 
-    string $addcountry, 
-    string $addtype)
-    {
-        if($addcodename !== ""
-          && $addadress !== ""
-          && $addpostcode !== ""
-          && $addcity !== ""
-          && $addcountry !== ""
-          && $addtype !== "") {
-            $stmt = $this->pdo->prepare('INSERT INTO hideouts (code_name, adress, postcode, city, country, type) VALUES (:addcodename, :addadress, :addpostcode, :addcity, :addcountry, :addtype)');
-            $stmt->bindParam(':addcodename', $addcodename);
-            $stmt->bindParam(':addadress', $addadress);
-            $stmt->bindParam(':addpostcode', $addpostcode);
-            $stmt->bindParam(':addcity', $addcity);
-            $stmt->bindParam(':addcountry', $addcountry);
-            $stmt->bindParam(':addtype', $addtype);
-            if ($stmt->execute()) {
-                echo 'La planque a bien été créée';
-            } else {
-                echo 'Impossible de créer la planque';
-            }
+    public function addHideout (string $addcodename, string $addadress, int $addpostcode, string $addcity, string $addcountry, string $addtype)
+        {
+            if($addcodename !== "" && $addadress !== "" && $addpostcode !== "" && $addcity !== "" && $addcountry !== "" && $addtype !== "") {
+                    $stmt = $this->pdo->prepare('INSERT INTO hideouts (code_name, adress, postcode, city, country, type) 
+                        VALUES (:addcodename, :addadress, :addpostcode, :addcity, :addcountry, :addtype)');
+                    $stmt->bindParam(':addcodename', $addcodename);
+                    $stmt->bindParam(':addadress', $addadress);
+                    $stmt->bindParam(':addpostcode', $addpostcode);
+                    $stmt->bindParam(':addcity', $addcity);
+                    $stmt->bindParam(':addcountry', $addcountry);
+                    $stmt->bindParam(':addtype', $addtype);
+                    if ($stmt->execute()) {
+                        echo 'La planque a bien été créée';
+                    } else {
+                        echo 'Impossible de créer la planque';
+                }
         }
     }
 
-    public function deleteType (int $id)
+    public function deleteHideout (int $id)
     {
-        $stmt = $this->pdo->prepare('DELETE FROM hideout WHERE id = :id');
+        $stmt = $this->pdo->prepare('DELETE FROM hideouts WHERE id = :id');
         $stmt->bindParam(':id', $id);
         if ($stmt->execute()) {
             echo 'La planque a bien été supprimée';
@@ -65,7 +56,7 @@ class Hideout
         }
     }
 
-    public function updateType (
+    public function updateHideout (
       int $updateid, 
       string $updatecodename, 
       string $updateadress,
@@ -73,7 +64,9 @@ class Hideout
       string $updatecity, 
       string $updatecountry, 
       string $updatetype){
-        $stmt = $this->pdo->prepare('UPDATE hideout SET code_name = :updatecodename, adress = :updateadress, postcode = :updatepostcode, city = :updatecity, country = :updatecountry, type = :updatetype WHERE id = :updateid');
+        $stmt = $this->pdo->prepare('UPDATE hideouts 
+            SET code_name = :updatecodename, adress = :updateadress, postcode = :updatepostcode, city = :updatecity, country = :updatecountry, type = :updatetype 
+            WHERE id = :updateid');
         $stmt->bindParam(':updateid', $updateid);
         $stmt->bindParam(':updatecodename', $updatecodename);
         $stmt->bindParam(':updateadress', $updateadress);

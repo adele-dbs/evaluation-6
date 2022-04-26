@@ -15,19 +15,21 @@ ob_start();
               <label for="updateid">Id : </label>
               <input type="text" name="updateid" readonly class="form-control" id="updateid" value="<?=($_POST['update'])?>">
               <label for="updatefirstname">Prénom : </label>
-              <input type="text" name="updatefirstname" class="form-control" id="updatefirstname">
+              <input type="text" name="updatefirstname" class="form-control" id="updatefirstname" value="<?=$agentById->getFirstName()?>">
                <label for="updatelastname">Nom : </label>
-              <input type="text" name="updatelastname" class="form-control" id="updatelastname">
+              <input type="text" name="updatelastname" class="form-control" id="updatelastname" value="<?=$agentById->getLastName()?>">
                <label for="updatebirthday">Date de naissance : </label>
-              <input type="date" name="updatebirthday" class="form-control" id="updatebirthday">
+              <input type="date" name="updatebirthday" class="form-control" id="updatebirthday" value="<?=$agentById->getBirthday()?>">
                <label for="updatecodename">Code d'identification : </label>
-              <input type="text" name="updatecodename" class="form-control" id="updatecodename">
+              <input type="text" name="updatecodename" class="form-control" id="updatecodename" value="<?=$agentById->getIdentificationCode()?>">
               <label for="updatenationality">Nationnalité : </label>
-              <input type="text" name="updatenationality" class="form-control" id="updatenationality">
-              <label for="updatemission">Mission (liste déroulante) : </label>
-              <input type="text" name="updatemission" class="form-control" id="updatemission">
-              <label for="updateparticularity">Particularité (liste déroulante) : </label>
-              <input type="text" name="updateparticularity" class="form-control" id="updateparticularity">
+              <input type="text" name="updatenationality" class="form-control" id="updatenationality" value="<?=$agentById->getNationality()?>">
+              <label for="updatemissionid">Mission : </label>
+              <select class="form-select" aria-label="Default select example" name="updatemissionid" id="updatemissionid">
+                <?php foreach ($missions as $mission): ?>
+                  <option value="<?= $mission->getMissionId() ?>"><?= $mission->getMissionId() ?> - <?= $mission->getMissionName() ?></option>
+                <?php endforeach; ?>
+              </select>
             </div>
             <button type="submit" class="btn btn-light btn-outline-dark">Modifier</button>
           </form>
@@ -42,20 +44,15 @@ ob_start();
                <label for="addbirthday">Date de naissance : </label>
               <input type="date" name="addbirthday" class="form-control" id="addbirthday">
                <label for="addcodename">Code  d'identification : </label>
-              <input type="text" name="addcodename" class="form-control" id="addcodename">
+              <input type="text" name="addcodename" class="form-control" id="addcodename" placeholder="000">
               <label for="addnationality">Nationnalité : </label>
               <input type="text" name="addnationality" class="form-control" id="addnationality">
-            <label for="addmission">Mission(liste) : </label>
-              <input type="text" name="addmission" class="form-control" id="addmission">
-            
-            <select class="form-select" aria-label="Default select example">
-              <?php foreach ($missions as $mission): ?>
-              <?php endforeach; ?>
-              <option value="<?= $mission->getMissionId() ?>"><?= $mission->getMissionName() ?></option>
-            </select>
-            + vérifier contraintes
-            <label for="addparticularity">Particularité (liste) : </label>
-              <input type="text" name="addparticularity" class="form-control" id="addparticularity">
+              <label for="addmissionid">Mission : </label>
+              <select class="form-select" aria-label="Default select example" name="addmissionid" id="addmissionid">
+                <?php foreach ($missions as $mission): ?>
+                  <option value="<?= $mission->getMissionId() ?>"><?= $mission->getMissionId() ?> - <?= $mission->getMissionName() ?></option>
+                <?php endforeach; ?>
+              </select>
             <button type="submit" class="btn btn-light btn-outline-dark">Ajouter</button>
           </form>
           <?php
@@ -75,7 +72,7 @@ ob_start();
           <th>Code d'identification</th>
           <th>Nationnalité</th>
           <th>Mission</th>
-          <th>Particularité</th>
+          <th>Spécialité</th>
           <th>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
             <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
@@ -98,8 +95,8 @@ ob_start();
               <td><?= $agent->getBirthday() ?></td>
               <td><?= $agent->getIdentificationCode() ?></td>
               <td><?= $agent->getNationality() ?></td>
-              <td><?= $agent->getMissionId() ?> - <?= $mission->getMissionName() ?></td>
-              <td><?= $agent->getParticularty() ?></td>
+              <td><?= $agent->getMissionId() ?></td>
+              <td></td>
               <td>
                 <form action="" method="POST">  
                   <button type="submit" name="update" value="<?= $agent->getId() ?>" class="btn btn-light">
