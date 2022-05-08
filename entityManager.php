@@ -12,11 +12,11 @@ function getEntityManager ()
       $database = ltrim($dbparts['path'],'/');
       
     } else {
-        $dbParams = [
-          'driver' => 'pdo_mysql',
-          'user' => 'root',
-          'password' => '',
-          'dbname' => 'kgb',
-        ];
-    }  
+      $dbParams = [
+        'driver' => 'pdo_mysql',
+        'user' => 'root',
+        'password' => '',
+        'dbname' => 'kgb',
+      ];
+   }  
 }
