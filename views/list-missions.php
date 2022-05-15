@@ -1,6 +1,8 @@
 
 <?php
 $titre = 'Espionnage - Missions';
+$meta ='name="description" 
+content="Lorem ipsum dolor sit amet, consectetur adipiscing elit."';
 $page_id = 'id="missions"';
 ob_start();
 ?>
@@ -16,6 +18,10 @@ ob_start();
         <input class="form-control" type="text" name="searchmission" id="searchmission" placeholder="Rechercher">
         <button type="submit" class="btn btn-light">Rechercher</button>
       </form>
+      <!-- test search with JS -->
+      <input id="searchbar" onkeyup="search_mission()" type="text"
+        name="search_mission" placeholder="Search mission..">
+
       <form method="POST">
         <button class="btn btn-light" name="choice" value="ASC">A>Z</button>
         <button class="btn btn-light" name="choice" value="DESC">Z>A</button>
@@ -24,30 +30,29 @@ ob_start();
   </header>
 
   <main>
-
-    <article class="container">
-
+    <section class="container">
       <?php
-
+        
+        // if search : just search result
         if(isset($_POST['searchmission']) && $_POST['searchmission']!== ""){
           ?>
             <?php foreach ($missionsFound as $mission): ?>
               <div class="row" id="mission-card">
                 <div class="col-9">
-                  <h2><?= $mission->getMissionName() ?></h2>
+                  <h2 class="mission_name"><?= $mission->getMissionName() ?></h2>
                 </div>
                 <div class="col-3 d-flex justify-content-end">
                 <a href="?page=detail&id=<?= $mission->getMissionId() ?>" class="btn btn-light btn-outline-dark justify-content-end">Détails</a>
                 </div>
               </div>
             <?php endforeach; ?>
-    </article>
-  </main>
-          
-          <?php
+    </section>
+  </main> 
+      <?php
+
+        // if not search : mission list and footer with pagination
         } else {
           ?>
-
             <?php foreach ($missions as $mission): ?>
               <div class="row" id="mission-card">
                 <div class="col-9">
@@ -59,7 +64,7 @@ ob_start();
               </div>
             <?php endforeach; ?>
 
-    </article>
+    </section>
   </main>
           
   <footer >
@@ -85,7 +90,9 @@ ob_start();
           <?php
         }
       ?>
-        
+
+<script src="views/searchbar.js"></script>
+
 <?php
 $content = ob_get_clean();
 require_once('layout.php');

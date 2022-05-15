@@ -5,9 +5,10 @@ ob_start();
 
 <div class="container-fluid">
   <div class="row no-gutters justify-content-between">
-    <div class="col-3" id="crud">
+    <section class="col-12 col-sm-3" id="crud">
       
       <?php
+        // update
         if(isset($_POST['update'])){
           ?>
           <form action="" method="POST">
@@ -34,6 +35,7 @@ ob_start();
             <button type="submit" class="btn btn-light btn-outline-dark">Modifier</button>
           </form>
           <?php
+        // add
         } else {
           ?>
           <form action="" method="POST">
@@ -58,8 +60,9 @@ ob_start();
           <?php
         }
       ?>
-    </div>
-    <div class="col-8">
+   </section>
+  
+  <section class="col-12 col-sm-9">
 
   <table class="table table-bordered table-light text-center">
       
@@ -96,6 +99,7 @@ ob_start();
               <td><?= $target->getNationality() ?></td>
               <td><?= $target->getMissionId() ?> </td>
               <td>
+                <!-- update -->
                 <form action="" method="POST">  
                   <button type="submit" name="update" value="<?= $target->getId() ?>" class="btn btn-light">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
@@ -105,6 +109,7 @@ ob_start();
                 </form>
               </td>
               <td>
+                <!-- delete -->
                 <form action="" method="POST">  
                   <button type="submit" name="delete" value="<?= $target->getId() ?>" class="btn btn-light">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">

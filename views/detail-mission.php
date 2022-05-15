@@ -1,5 +1,7 @@
 <?php
 $titre = 'Espionnage - Détail de la Mission';
+$meta ='name="description" 
+content="Lorem ipsum dolor sit amet, consectetur adipiscing elit."';
 $page_id = 'id="missions"';
 if (is_null($mission)) {
   $content = 'Cette mission n\'existe pas';
@@ -9,7 +11,7 @@ if (is_null($mission)) {
 
   <h1 class="text-center"><?= $mission->getMissionName() ?></h1>
 
-  <article class="container items" id="mission-detail">
+  <section class="container items" id="mission-detail">
 
   <div class="row row-cols-1 row-cols-sm-2">
     <div class="card">
@@ -129,7 +131,7 @@ if (is_null($mission)) {
         </div>
       </div>
     </div>
-  </article>
+  </section>
   
   <div class="text-center">
     <a class="btn btn-dark text-white text-center" href="?page=list" role="button" id="button-mission-list"> 

@@ -37,7 +37,7 @@ class User
                 }
             }  
         } 
-        echo $message;
+       // echo $message;
     }
 
     public function getId()

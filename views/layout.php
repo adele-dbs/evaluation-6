@@ -8,9 +8,7 @@
     name="viewport" 
     content="width=device-width, initial-scale=1">
   <title><?= $titre ?></title>
-  <meta 
-    name="description" 
-    content="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+  <meta <?= $meta ?>>
   <link 
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
     rel="stylesheet" 

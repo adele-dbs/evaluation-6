@@ -1,5 +1,7 @@
 <?php
 $titre = 'Espionnage - Backend';
+$meta ='name="description" 
+content="Lorem ipsum dolor sit amet, consectetur adipiscing elit."';
 $page_id = 'id="missions"';
 ob_start();
 ?>
@@ -48,11 +50,9 @@ ob_start();
 
 <main>
   <h2 class="table-title text-center"><?= $tableTitle ?></h2>
-  <article class="container">
 
   <?= $table ?>
 
-    
 </main>
           
 <?php

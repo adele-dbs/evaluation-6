@@ -136,3 +136,34 @@ th, td {
   margin-right: 5em;
 }
 
+@media screen and (max-width: 576px) {
+  #button-login {
+    left: 70vw;
+    top: 0vh;
+  }
+  #button-home {
+    right: 70vw;
+    top: 0vh;
+  }
+  #button-logout {
+    left: 35vw;
+    top: 5vh;
+  }
+  #mission-card {
+    margin-left: 0em;
+    margin-right: 0em;
+  }
+  #search {
+    margin-left: 0em;
+    margin-right: 0em;
+  }
+  #login-f {
+    width : 100%;
+  }
+  h1 {
+    margin-top: 2em;
+  }
+  #crud {
+    margin-bottom: 10px;
+  }
+}

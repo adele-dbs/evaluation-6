@@ -1,6 +1,8 @@
 
 <?php
 $titre = 'Espionnage - Missions';
+$meta ='name="description" 
+content="Lorem ipsum dolor sit amet, consectetur adipiscing elit."';
 $page_id = 'id="missions"';
 ob_start();
 ?>
@@ -30,6 +32,8 @@ ob_start();
   </div>
 
 </main>
+
+<script src="views/login-messages.js"></script>
           
 <?php
 $content = ob_get_clean();
