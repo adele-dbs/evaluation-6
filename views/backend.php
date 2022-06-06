@@ -20,6 +20,11 @@ ob_start();
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+          <!-- test -->
+          <li class="nav-item">
+            <a class="nav-link" id="menu">Test</a>
+          </li>
+          <!-- menu normal -->
           <li class="nav-item">
             <a class="nav-link" href="?page=backend">Missions</a>
           </li>
@@ -51,10 +56,14 @@ ob_start();
 <main>
   <h2 class="table-title text-center"><?= $tableTitle ?></h2>
 
+  <p id="tableValue">Pas de commentaire</p>
+
   <?= $table ?>
 
 </main>
-          
+
+<script src="views/change-table.js"></script>
+
 <?php
 $content = ob_get_clean();
 require_once('layout.php');
