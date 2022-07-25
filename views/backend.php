@@ -22,7 +22,10 @@ ob_start();
         <ul class="navbar-nav">
           <!-- test -->
           <li class="nav-item">
-            <a class="nav-link" id="menu">Test</a>
+            <a class="nav-link" id="test1">Test</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="test2">Test 2</a>
           </li>
           <!-- menu normal -->
           <li class="nav-item">
@@ -55,8 +58,6 @@ ob_start();
 
 <main>
   <h2 class="table-title text-center"><?= $tableTitle ?></h2>
-
-  <p id="tableValue">Pas de commentaire</p>
 
   <?= $table ?>
 

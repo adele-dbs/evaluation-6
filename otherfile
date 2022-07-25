@@ -1,0 +1,41 @@
+    
+
+    cd C:\xampp\mysql\bin
+    mysqldump -u root -p kgb > bdd_kgb100422.sql
+    mysqldump -h 127.0.0.1 -u root -p kgb > backup1.sql
+    mysql -h bv2rebwf6zzsv341.cbetxkdyhwsb.us-east-1.rds.amazonaws.com -u wpuk5xfanhv6wu4m -pcd64w934yuan1g2w ky7jce2yksvbhl34 < backup.sql
+
+    git push -u origin main
+
+    heroku login
+    heroku create
+    git push heroku main
+     
+    heroku addons:create jawsdb:kitefin
+
+Barre de recherche : 
+         <!-- test search with JS -->
+            <input id="searchbar" onkeyup="search_mission()" type="text"
+            name="search_mission" placeholder="Search mission..">
+         <!-- test search with JS -->
+
+         <?= //$mission->getMissionName() ?>
+
+         function search_mission() {
+  let input = document.getElementById('searchbar').value
+  input=input.toLowerCase();
+  let x = document.getElementsByClassName('mission_name');
+    
+  for (i = 0; i < x.length; i++) { 
+      if (!x[i].innerHTML.toLowerCase().includes(input)) {
+          x[i].style.display="none";
+      }
+      else {
+          x[i].style.display="list-item";                 
+      }
+  }
+}
+
+changer la couleur : 
+         https://jsfiddle.net/Xotic750/a334U/
+    

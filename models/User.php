@@ -29,15 +29,18 @@ class User
                         header('Location: ?page=backend');
                     } else {
                         require_once 'views/login.php';
-                        $message = "Vous n'êtes pas administrateur";
+                        ?>
+                            <script type="text/javascript"> alert('Vous n\'êtes pas administrateur') </script>
+                        <?php
                     }     
                 } else {
                     require_once 'views/login.php';
-                    $message = "Identifiant ou Mot de passe invalide";
+                    ?>
+                        <script type="text/javascript"> alert('Identifiant ou Mot de passe invalide') </script>
+                    <?php   
                 }
             }  
         } 
-       // echo $message;
     }
 
     public function getId()

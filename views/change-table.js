@@ -16,3 +16,17 @@ $(document).ready(() => {
       $('#tableValue').html($(this).val())
   })
 });
+
+let menu = document.querySelector('nav')
+
+menu.addEventListener('submit', (event) => {
+  for(var count=0; count<form.elements.length; count++) {
+    switch (form.elements[count].name) {
+      case 'test1':
+        
+      case 'test2':
+        
+      break;
+    }
+  }
+})

@@ -86,7 +86,7 @@ class Controller
       $missionsPerPage = $this->missionsObject->getMissionPerPage();
       $pagesNumber = $this->missionsObject->getPagesNumber();
       $currentPage = $this->missionsObject->getCurrentPage();
-      $missions = $this->missionsObject->getMissionsList();
+      $listmissions = $this->missionsObject->getMissionsList();
       require_once 'views/list-missions.php';
     }
 
@@ -118,8 +118,6 @@ class Controller
       }
       require_once 'views/login.php';
     }
-
-//mdp : p4$$w0rd : admin
 
     public function logout()
    {

@@ -52,12 +52,13 @@ class Missions
         $missionsPerPage = $this->getMissionPerPage ();
 
         $offset = ($currentPage - 1) * $missionsPerPage;
-        $stmt = $this->pdo->query('SELECT * FROM missions ORDER BY name '. $order .' LIMIT ' . $offset . "," . $missionsPerPage);
-        $missions = [];
-        while ($mission = $stmt->fetchObject('Mission')) {
-            $missions[] = $mission;
-        }
-        return $missions;
+        $listmissions = $this->pdo->query('SELECT missions.id mid, missions.name mname, missions.status_id, status.id sid, status.name sname, status.color
+            FROM missions
+            INNER JOIN status ON status.id = missions.status_id 
+            ORDER BY mname '. $order .' 
+            LIMIT '. $offset . "," . $missionsPerPage
+        );
+        return $listmissions;
     }
 
     public function getMissionsSearchList (string $searchmission)

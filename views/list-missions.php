@@ -18,10 +18,6 @@ ob_start();
         <input class="form-control" type="text" name="searchmission" id="searchmission" placeholder="Rechercher">
         <button type="submit" class="btn btn-light">Rechercher</button>
       </form>
-      <!-- test search with JS -->
-      <input id="searchbar" onkeyup="search_mission()" type="text"
-        name="search_mission" placeholder="Search mission..">
-
       <form method="POST">
         <button class="btn btn-light" name="choice" value="ASC">A>Z</button>
         <button class="btn btn-light" name="choice" value="DESC">Z>A</button>
@@ -53,13 +49,16 @@ ob_start();
         // if not search : mission list and footer with pagination
         } else {
           ?>
-            <?php foreach ($missions as $mission): ?>
+            <?php foreach ($listmissions as $mission): ?>
               <div class="row" id="mission-card">
-                <div class="col-9">
-                  <h2><?= $mission->getMissionName() ?></h2>
+                <div class="col-6">
+                  <h2><?= $mission['mname'] ?> </h2>
+                </div>
+                <div class="col-3 position-relative">
+                  <p style="background:<?= $mission['color'] ?>" class="position-absolute translate-middle-y border border-dark rounded-3 w-100 p-2"><?= $mission['sname'] ?></p>
                 </div>
                 <div class="col-3 d-flex justify-content-end">
-                <a href="?page=detail&id=<?= $mission->getMissionId() ?>" class="btn btn-light btn-outline-dark justify-content-end">Détails</a>
+                  <a href="?page=detail&id=<?= $mission['mid'] ?>" class="btn btn-light btn-outline-dark justify-content-end">Détails</a>
                 </div>
               </div>
             <?php endforeach; ?>
@@ -90,8 +89,6 @@ ob_start();
           <?php
         }
       ?>
-
-<script src="views/searchbar.js"></script>
 
 <?php
 $content = ob_get_clean();

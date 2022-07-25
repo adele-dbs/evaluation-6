@@ -91,7 +91,6 @@ h1 {
   margin-bottom: 0.1em;
 }
 
-
 #search {
   margin-left: 5em;
   margin-right: 5em;
@@ -100,8 +99,9 @@ h1 {
 }
 
 #pagination {
-  position:relative
+  position:relative;
 }
+
 
 th, td {
   vertical-align: middle;

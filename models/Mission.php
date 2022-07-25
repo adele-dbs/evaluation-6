@@ -7,7 +7,7 @@ class Mission
     use Model;
 
     private int $id;
-    private string $name;
+    public string $name;
     private int $status_id;
     private string $description;
     private string $code_name;

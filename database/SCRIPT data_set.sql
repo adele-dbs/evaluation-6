@@ -3,11 +3,11 @@ INSERT INTO kgb.types (name) VALUES
 ('Assassinat'),
 ('Infiltration');
 
-INSERT INTO kgb.status (name) VALUES
-('En préparation'),
-('En cours'),
-('Echec'),
-('Terminée');
+INSERT INTO kgb.status (name, color) VALUES
+('En préparation','blue'),
+('En cours', 'orange'),
+('Echec', 'black'),
+('Terminée', 'green');
 
 INSERT INTO kgb.rights (name) VALUES
 ('ADMIN'),

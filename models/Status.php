@@ -8,6 +8,7 @@ class Status
 
     private int $id;
     private string $name;
+    private string $color;
 
     public function getStatus (int $id)
     {
@@ -47,6 +48,11 @@ class Status
     public function getStatusName()
     {
         return $this->name;
+    }
+
+    public function getStatusColor()
+    {
+        return $this->color;
     }
 
 }

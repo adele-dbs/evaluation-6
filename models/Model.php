@@ -20,7 +20,7 @@ trait Model
           } else {
                 $hostname = 'localhost';
                 $username = 'kgbuser';
-                $password = 'naqTXmEKwWmZ779&';
+                $password = '2hvhDhnDSO-[PS6Q';
                 $database = 'kgb';
         } 
 
